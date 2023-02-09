@@ -1,0 +1,85 @@
+Assignment_21
+
+1. Add the current date to the text file today.txt as a string.
+from datetime import date
+now = date.today()
+now_str = now.isoformat()
+with open('today', 'wt') as output:
+    print(now_str, file=output)
+
+2. Read the text file today.txt into the string today_string
+with open('today', 'rt') as input:
+    today_string = input.read()
+today_string
+'2021-07-27\n'
+
+3. Parse the date from today_string.
+fmt = '%Y-%m-%d\n'
+datetime.strptime(today_string, fmt)
+
+4. List the files in your current directory
+import os
+ os.listdir('.')
+['.ipynb_checkpoints',
+ 'Assignment_1.ipynb',
+ 'Assignment_10.ipynb',
+ 'Assignment_11.ipynb',
+ 'Assignment_12.ipynb',
+ 'Assignment_13.ipynb',
+ 'Assignment_14.ipynb',
+ 'Assignment_15.ipynb',
+ 'Assignment_16.ipynb',
+ 'Assignment_17.ipynb',
+ 'Assignment_18.ipynb',
+ 'Assignment_19.ipynb',
+ 'Assignment_2.ipynb',
+ 'Assignment_20.ipynb',
+ 'Assignment_21.ipynb',
+ 'Assignment_3.ipynb',
+ 'Assignment_4.ipynb',
+ 'Assignment_5.ipynb',
+ 'Assignment_6.ipynb',
+ 'Assignment_7.ipynb',
+ 'Assignment_8.ipynb',
+ 'Assignment_9.ipynb',
+ 'books.csv',
+ 'books.db',
+ 'test.txt',
+ 'today',
+ 'zoo.py',
+ '__pycache__']
+
+5. Create a list of all of the files in your parent directory (minimum five files should be available).
+import os
+ os.listdir('..')
+['Python Advance Assignment',
+ 'Python Advance Assignment solutions',
+ 'Python Basic Assignment',
+ 'Python Basic Assignment solutions',
+ 'Python Programming Basic Assignment',
+ 'Python Programming Basic Assignment solutions']
+
+6. Use multiprocessing to create three separate processes. Make each one wait a random number of seconds between one and five, print the current time, and then exit.
+import multiprocessing
+
+def now(seconds): from datetime import datetime from time import sleep sleep(seconds) print('wait', seconds, 'seconds, time is', datetime.utcnow())
+
+if name == 'main': import random for n in range(3): seconds = random.random() proc = multiprocessing.Process(target=now, args=(seconds,)) proc.start()
+
+7. Create a date object of your day of birth.
+my_day = date(1995, 7, 12)
+my_day
+datetime.date(1995, 7, 12)
+
+8. What day of the week was your day of birth?
+my_day.weekday()
+2
+my_day.isoweekday()
+3
+With weekday(), Monday is 0 and Sunday is 6. With isoweekday(), Monday is 1 and Sunday is 7. Therefore, this date was a Saturday.
+
+9. When will you be (or when were you) 10,000 days old?
+from datetime import timedelta
+party_day = my_day + timedelta(days=10000)
+party_day
+datetime.date(2022, 11, 27)
